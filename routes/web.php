@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\MatchingController;
+use App\Http\Controllers\ChatController;
 
 /*
 |--------------------------------------------------------------------------
@@ -30,3 +31,7 @@ Auth::routes();
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 Route::get('/matching', [MatchingController::class, 'index'])->name('matching');
+
+Route::group(['prefix' => 'chat', 'middleware' => 'auth'], function () {
+    Route::post('show', [ChatController::class, 'show'])->name('chat.show');
+});
