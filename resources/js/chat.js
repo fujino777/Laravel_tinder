@@ -28,9 +28,7 @@ window.Echo.channel('ChatRoomChannel')
         if(e.message.user_id === user_id){
             console.log(true);
         $('.messages').append(
-            '<div class="message"><span>' + current_user_name +
-            ':</span><div class="commonMessage"><div>' +
-        e.message.message + '</div></div></div>');
+            '<div class="message"><span>' + current_user_name + ':</span><div class="commonMessage"><div>' + e.message.message + '</div></div></div>');
         }else{
             console.log(false);
         $('.messages').append(

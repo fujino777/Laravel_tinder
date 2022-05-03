@@ -1,6 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Auth;
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\MatchingController;
 use App\Http\Controllers\ChatController;
@@ -22,14 +24,13 @@ Route::group(['prefix' => 'users', 'middleware' => 'auth'], function () {
     Route::post('update/{id}', [UserController::class, 'update'])->name('users.update');
 });
 
+Auth::routes();
+
 Route::get('/', function () {
     return view('top');
 });
 
-Auth::routes();
-
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-
+Route::get('/home', [HomeController::class, 'index'])->name('home');
 Route::get('/matching', [MatchingController::class, 'index'])->name('matching');
 
 Route::group(['prefix' => 'chat', 'middleware' => 'auth'], function () {
